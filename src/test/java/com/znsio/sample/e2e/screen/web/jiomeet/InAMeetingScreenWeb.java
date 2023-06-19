@@ -7,6 +7,7 @@ import com.znsio.sample.e2e.screen.jiomeet.InAMeetingScreen;
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Runner;
 import com.znsio.teswiz.runner.Visual;
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -58,7 +59,7 @@ public class InAMeetingScreenWeb
         meetingId = meetingId.replaceAll("\\s", "");
         String pin = driver.waitForClickabilityOf(byCurrentMeetingPinXpath).getText();
         String invitationLink = driver.waitForClickabilityOf(byCurrentMeetingInvitationLinkXpath)
-                                      .getText();
+                .getText();
         js.executeScript("arguments[0].click()", infoIcon);//to close the meeting info frame
         visually.takeScreenshot(SCREEN_NAME, "After closing meeting info icon");
         LOGGER.info("On Web the meeting id: " + meetingId + " Password: " + pin);
@@ -99,6 +100,11 @@ public class InAMeetingScreenWeb
         visually.takeScreenshot(SCREEN_NAME, "in a meeting after micLabel text");
         LOGGER.info("getMicLabelText: mic label text : " + micLabelText);
         return micLabelText;
+    }
+
+    @Override
+    public InAMeetingScreen openJioMeetNotification() {
+        throw new NotImplementedException("Jio Meet Device Notification of Meeting is not available for Web");
     }
 
     private void enableInMeetingControls(String calledFrom) {
